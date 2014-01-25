@@ -2,7 +2,7 @@
 # Abraham Yuen
 
 .data
-str1: .asciiz "Enter a number to check if it is a palindrome or not\n "
+str1: .asciiz "Enter a number to check if it is a palindrome or not\n"
 str2: .asciiz " is a palindrome number.\n "
 str3: .asciiz " is not a palindrome number.\n "
 
