@@ -16,7 +16,7 @@ void chain :: readAndStoreFromFile(char* fileName)
 	if (!in) return; // file doesn't exist
 
 	int line;
-	while(getline(in, line)) {
+	while(in >> line) {
 		insert(1, line);
 	}
 
