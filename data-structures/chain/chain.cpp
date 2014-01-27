@@ -17,7 +17,7 @@ void chain :: readAndStoreFromFile(char* fileName)
 
 	int line;
 	while(in >> line) {
-		insert(1, line);
+		insert(listSize, line);
 	}
 
 	/*int line;
