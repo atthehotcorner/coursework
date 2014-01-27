@@ -40,6 +40,10 @@ void chain :: eraseModuloValue(int theInt)
 {
 	//This function erases all the entries from the list which are multiple of theInt
 
+	for(int i=0; i<listSize; i++) {
+		int value = *this->get(i);
+        	if (value/theInt > 0) remove(i);
+	}
 
 
 }
