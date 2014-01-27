@@ -11,18 +11,26 @@ void chain :: readAndStoreFromFile(char* fileName)
 {
 	//This function reads integers from the file given by fileName then store them in the chain
 
-	std::ifstream data(filename);
-	std::string line;
+	ifstream in;
+	in.open(filename.c_str());
+	if (!in) return; // file doesn't exist
 
-	while(std::getline(data,line)) 
-		td::stringstream    str(line);
-		td::string          text;
-
-		td::getline(str,text,'=');
-
-		double   value;
-		tr >> value;
+	int line;
+	while(getline(in, line)) {
+		insert(1, line);
 	}
+
+	/*int line;
+
+	while(std::getline(data, line)) 
+		std::stringstream str(line);
+		std::string text;
+
+		std::getline(str,text,'=');
+
+		double value;
+		str >> value;
+	}*/
 
 }
 
