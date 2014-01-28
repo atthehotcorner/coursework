@@ -33,7 +33,7 @@ void chain :: eraseModuloValue(int theInt)
 		int value = *this->get(i);
 		int remainder = value%theInt;
 
-        	if (remainder == 0 && value > theInt) {
+        	if (remainder == 0) {
 			erase(i);
         		i--;
 		}
