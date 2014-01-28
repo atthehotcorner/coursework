@@ -52,6 +52,10 @@ void chain :: reverse()
 {
 	//Reverses the list
 
+	for(int i=0; i < listSize; i++) {
+		int value = *this->get(i);
+        	insert(0, value);
+	}
 
 }
 
