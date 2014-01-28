@@ -11,13 +11,24 @@ void chain :: readAndStoreFromFile(char* fileName)
 {
 	//This function reads integers from the file given by fileName then store them in the chain
 
-	ifstream in;
+	/*ifstream in;
+	ifstream infile("input.txt");
+	stringstream 
 	in.open(filename.c_str());
 	if (!in) return; // file doesn't exist
 
 	int line;
 	while(in >> line) {
 		insert(listSize, line);
+	}*/
+
+	ifstream infile(fileName.c_str()) ;
+	string line;
+
+	while(getline(infile, line)) {
+		istringstream iss(line);
+		int n;
+		iss > n;
 	}
 
 	/*int line;
