@@ -41,7 +41,7 @@ int main (int argc, char *argv[]){
 	cout<<"\n\n The list after odd and even ordering is : "<<endl;
 	mychain->output();
 	
-	cout<<"\n\n cats: "<<endl;
+
 	//Reverse the mychain
 	mychain->reverse();
 	
