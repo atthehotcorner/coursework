@@ -32,15 +32,12 @@ void chain :: eraseModuloValue(int theInt)
 	for(int i=0; i < listSize; i++) {
 		int value = *this->get(i);
 		int remainder = value%theInt;
-cout << "value: " << value << ", Remainder: " << remainder << ", listSize: " << listSize << ", i: " << i << endl;
 
         	if (remainder == 0 && value > theInt) {
 			erase(i);
         		i--;
 		}
-output();
 	}
-
 
 }
 
