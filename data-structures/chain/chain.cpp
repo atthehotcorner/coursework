@@ -47,8 +47,19 @@ void chain :: oddAndEvenOrdering()
 	//This function reorders the list such a way that all odd numbers precede all even numbers. 
 	//Note that for two odd (even) numbers i and j, the ordering between i and j should be intact after reordering.
 
+	int oddSize = 0;
 
+	for(int i=0; i < listSize; i++) {
+		int value = *this->get(i);
+		bool odd = (value%2 == 0)? false:true;
 
+        	if (odd) {
+			erase(i);
+			insert(oddSize, value);
+        		i++;
+        		oddSize++;
+		}
+	}
 
 }
 
