@@ -42,7 +42,7 @@ void chain :: eraseModuloValue(int theInt)
 
 	for(int i=0; i<listSize; i++) {
 		int value = *this->get(i);
-        	if (value/theInt > 0) remove(i);
+        	if (value/theInt > 0 && value != theInt) remove(i);
 	}
 
 
