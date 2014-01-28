@@ -56,7 +56,6 @@ void chain :: oddAndEvenOrdering()
         	if (odd) {
 			erase(i);
 			insert(oddSize, value);
-        		i++;
         		oddSize++;
 		}
 	}
