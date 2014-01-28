@@ -29,6 +29,7 @@ void chain :: readAndStoreFromFile(char* fileName)
 		istringstream iss(line);
 		int n;
 		iss >> n;
+		insert(listSize, n);
 	}
 
 	/*int line;
