@@ -28,7 +28,7 @@ void chain :: readAndStoreFromFile(char* fileName)
 	while(getline(infile, line)) {
 		istringstream iss(line);
 		int n;
-		iss > n;
+		iss >> n;
 	}
 
 	/*int line;
