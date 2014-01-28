@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include "Myexception.h"
 #include "chain.h"
@@ -11,18 +12,7 @@ void chain :: readAndStoreFromFile(char* fileName)
 {
 	//This function reads integers from the file given by fileName then store them in the chain
 
-	/*ifstream in;
-	ifstream infile("input.txt");
-	stringstream 
-	in.open(filename.c_str());
-	if (!in) return; // file doesn't exist
-
-	int line;
-	while(in >> line) {
-		insert(listSize, line);
-	}*/
-
-	ifstream infile(fileName.c_str()) ;
+	ifstream infile(fileName) ;
 	string line;
 
 	while(getline(infile, line)) {
@@ -32,18 +22,6 @@ void chain :: readAndStoreFromFile(char* fileName)
 		insert(listSize, n);
 	}
 
-	/*int line;
-
-	while(std::getline(data, line)) 
-		std::stringstream str(line);
-		std::string text;
-
-		std::getline(str,text,'=');
-
-		double value;
-		str >> value;
-	}*/
-
 }
 
 
@@ -52,9 +30,9 @@ void chain :: eraseModuloValue(int theInt)
 {
 	//This function erases all the entries from the list which are multiple of theInt
 
-	for(int i=0; i<listSize; i++) {
+	for(int i=0; i < listSize; i++) {
 		int value = *this->get(i);
-        	if (value/theInt > 0 && value != theInt) remove(i);
+        	if (value/theInt > 0 && value != theInt) erase(i);
 	}
 
 
