@@ -33,17 +33,16 @@ void chain :: eraseModuloValue(int theInt)
 		int value = *this->get(i);
 		int remainder = value%theInt;
 cout << "value: " << value << ", Remainder: " << remainder << ", listSize: " << listSize << ", i: " << i << endl;
-output();
+
         	if (remainder == 0 && value > theInt) {
 			erase(i);
         		i--;
-        		listSize--;
 		}
+output();
 	}
 
 
 }
-
 
 
 void chain :: oddAndEvenOrdering()
