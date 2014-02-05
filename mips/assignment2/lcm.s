@@ -51,9 +51,21 @@ mult $a0, $a1		# number1 * number2
 mfhi $t3		# put hi in t3
 mflo $t4		# put lo in t4
 add $v0, $t3, $t4	# put return variable in $v0
-#jal gcd	
+
+jal gcd			# call gcd in lcm
+
 jr $ra			# return from procedure
 
 
-gcd:			# GCD procedure
+gcd:			# GCD procedure with same a0, a1 args
+div $a0, $a1		# number1 % number 2
+mfhi $t5		# move result result to $t5
+
+bnez $t5, NOTZERO	# if result not = 0 then skip
+# result is zero
+add $t6, $a1, $zero	# return number2
 jr $ra			# return from procedure
+NOTZERO:
+# result is not zero
+
+j gcd			# go back to gcd
