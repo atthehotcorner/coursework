@@ -59,13 +59,14 @@ jr $ra			# return from procedure
 
 gcd:			# GCD procedure with same a0, a1 args
 div $a0, $a1		# number1 % number 2
-mfhi $t5		# move result result to $t5
+mfhi $t5		# move mod result to $t5
 
 bnez $t5, NOTZERO	# if result not = 0 then skip
 # result is zero
-add $t6, $a1, $zero	# return number2
+add $t6, $a1, $zero	# store number2 in $t6
 jr $ra			# return from procedure
 NOTZERO:
 # result is not zero
-
-j gcd			# go back to gcd
+add $a0, $a1, $zero	# replace number1 with number2
+add $a1, $t5, $zero	# replace number2 with % result
+jal gcd			# go back to gcd
