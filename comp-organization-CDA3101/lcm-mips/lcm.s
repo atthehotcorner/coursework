@@ -37,7 +37,7 @@ la $a0, str3		# argument: string
 syscall			# print the string (lcm of ...)
 
 li $v0, 1		# syscall 1 (print int)
-add $a0, $t2, $zero	# move int to $a0
+add $a0, $t7, $zero	# move int to $a0
 syscall			# print int (result of lcm call)
 
 li $v0, 4		# syscall 4 (printf)
@@ -58,8 +58,10 @@ lcm:			# args number1, number2	in $a0, $a1
 	add $v0, $t3, $t4	# put return variable in $v0
 
 	jal gcd			# call gcd in lcm
+	div $t4, $t6		# number1 * number2 / gcd(number1 * number2)
+	mflo $t7		# move div result to t7
 
-	lw $ra, 4($sp)	# restore previous return addr
+	lw $ra, 4($sp)		# restore previous return addr
 	add $sp, $sp, 8		# pop stack
 	jr $ra			# return from procedure
 
@@ -73,7 +75,7 @@ gcd:			# GCD procedure with same a0, a1 args
 	bnez $t5, ELSE	# if result not = 0 then skip
 	# result is zero
 	add $t6, $a1, $zero	# store number2 in $t6
-	lw $ra, 4($sp)	# restore previous return addr
+	lw $ra, 4($sp)		# restore previous return addr
 	add $sp, $sp, 8		# pop stack
 	jr $ra			# return from procedure
 ELSE:
