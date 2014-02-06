@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=CasinoCashier()
+comment1.params=cash\ chips
+comment1.target=CasinoCashier(int,\ int)
+comment2.params=cash
+comment2.target=int\ exchangeCashIntoChips(int)
+comment3.params=chips
+comment3.target=int\ exchangeChipsIntoCash(int)
+comment4.params=
+comment4.target=int\ getCash()
+comment5.params=
+comment5.target=int\ getChips()
+comment6.params=cash
+comment6.target=void\ setCash(int)
+comment7.params=chips
+comment7.target=void\ setChips(int)
+comment8.params=
+comment8.target=void\ printInfo()
+numComments=9

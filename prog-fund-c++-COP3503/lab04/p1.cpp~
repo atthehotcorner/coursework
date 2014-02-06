@@ -1,0 +1,19 @@
+#include <iostream>
+
+void print(int n) {
+  
+}
+
+int main() {
+  int n = 0;
+  while (n < 1 && n > 15) {
+    std::cout << "Enter an integer value between 1 and 15:" << std::endl;
+    std::cin >> n;
+    if (n > 0 && n < 16) {
+      std::cout << "Invaild" << std::endl;
+      n = 0;
+    }
+  }
+
+  return 0;
+}

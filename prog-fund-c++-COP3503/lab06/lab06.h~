@@ -1,0 +1,22 @@
+struct Node {
+  Node() {
+    before = nullptr;
+  }
+  int decapitate();
+  void clear();
+  void printContents();
+  Node* before;
+  int value;
+};
+
+struct LinkedList {
+  LinkedList() {
+    tail = nullptr;
+  }
+  void append( int data );
+  int decapitate();
+  void clear();
+  void printContents();
+private:
+  Node* tail;
+};

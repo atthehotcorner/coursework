@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=TriangleLeft()
+comment1.params=p\ l
+comment1.target=TriangleLeft(char,\ int)
+comment2.params=
+comment2.target=void\ printTriangleLeft()
+numComments=3

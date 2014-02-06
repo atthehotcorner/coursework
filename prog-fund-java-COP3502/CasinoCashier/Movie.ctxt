@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Movie()
+comment1.params=title\ price\ rating
+comment1.target=Movie(java.lang.String,\ double,\ char)
+comment10.params=age\ student
+comment10.target=double\ ticketPrice(int,\ boolean)
+comment2.params=
+comment2.target=java.lang.String\ getTitle()
+comment3.params=
+comment3.target=double\ getPrice()
+comment4.params=
+comment4.target=char\ getRating()
+comment5.params=title
+comment5.target=void\ setTitle(java.lang.String)
+comment6.params=price
+comment6.target=void\ setPrice(double)
+comment7.params=rating
+comment7.target=void\ setRating(char)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment9.params=
+comment9.target=void\ printInfo()
+numComments=11
