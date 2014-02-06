@@ -9,17 +9,19 @@ nline: .asciiz "\n"
 
 .text
 main:
-li $v0, 4		# syscall 4 (printf)
-la $a0, str1		# argument: string
-syscall			# print the string (a)
+	sw $ra, 4($sp)		# save return address
 
-li $v0, 5		# syscall 5 (read int, scanf)
-syscall			# get input
-move $t0, $v0		# place the value read into register $t1 (a=input, n1)
+	li $v0, 4		# print 'Enter integer a'
+	la $a0, str1
+	syscall
 
-li $v0, 4		# syscall 4 (printf)
-la $a0, str2		# argument: string
-syscall			# print the string (b)
+	li $v0, 5		# save input as number1
+	syscall
+	move $t0, $v0
+
+	li $v0, 4		# print 'Enter integer b'
+	la $a0, str2
+	syscall
 
 li $v0, 5		# syscall 5 (read int, scanf)
 syscall			# get input
@@ -46,27 +48,36 @@ li $v0, 10		# syscall 10 (terminate program, exit)
 syscall
 
 # Procedures
-lcm:			# args number1, number2		
-mult $a0, $a1		# number1 * number2
-mfhi $t3		# put hi in t3
-mflo $t4		# put lo in t4
-add $v0, $t3, $t4	# put return variable in $v0
+lcm:			# args number1, number2	in $a0, $a1
+	sub $sp, $sp, 8		# push stack
+	sw $ra, 4($sp)		# save return address
 
-jal gcd			# call gcd in lcm
+	mult $a0, $a1		# number1 * number2
+	mfhi $t3		# put hi in t3
+	mflo $t4		# put lo in t4
+	add $v0, $t3, $t4	# put return variable in $v0
 
-jr $ra			# return from procedure
+	jal gcd			# call gcd in lcm
 
+	lw $ra, 4($sp)	# restore previous return addr
+	add $sp, $sp, 8		# pop stack
+	jr $ra			# return from procedure
 
 gcd:			# GCD procedure with same a0, a1 args
-div $a0, $a1		# number1 % number 2
-mfhi $t5		# move mod result to $t5
+	sub $sp, $sp, 8	# push stack
+	sw $ra, 4($sp)		# save return address
 
-bnez $t5, NOTZERO	# if result not = 0 then skip
-# result is zero
-add $t6, $a1, $zero	# store number2 in $t6
-jr $ra			# return from procedure
-NOTZERO:
-# result is not zero
-add $a0, $a1, $zero	# replace number1 with number2
-add $a1, $t5, $zero	# replace number2 with % result
-jal gcd			# go back to gcd
+	div $a0, $a1		# number1 % number 2
+	mfhi $t5		# move mod result to $t5
+
+	bnez $t5, ELSE	# if result not = 0 then skip
+	# result is zero
+	add $t6, $a1, $zero	# store number2 in $t6
+	lw $ra, 4($sp)	# restore previous return addr
+	add $sp, $sp, 8		# pop stack
+	jr $ra			# return from procedure
+ELSE:
+	# result is not zero
+	add $a0, $a1, $zero		# replace number1 with number2
+	add $a1, $t5, $zero	# replace number2 with % result
+	j gcd			# recursive gcd
