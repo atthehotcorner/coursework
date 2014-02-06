@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.params=args
-comment0.target=void\ main(java.lang.String[])
-comment1.params=
-comment1.target=DC8()
-comment2.params=size
-comment2.target=void\ printX(int)
-comment2.text=\n\ int\ begin\ \=\ 0;\n\ int\ end\ \=\ size;\n\ for\ each\ row\n\ \ \ for\ each\ col\n\ \ \ \ \ if\ col\ \=\=\ begin\ OR\ col\ \=\=\ end\n\ \ \ \ \ \ \ print\ "*"\n\ \ \ \ \ else\ \n\ \ \ \ \ \ \ print\ "\ "\n
-numComments=3
