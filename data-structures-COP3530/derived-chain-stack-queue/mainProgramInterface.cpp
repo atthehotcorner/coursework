@@ -70,10 +70,14 @@ bool mainProgramInterface :: validSequence(int *theSequence, int n)
 
 void mainProgramInterface :: duplicateStack(derivedChainStack* source, derivedChainStack* dest)
 {
-	//Write your code here. This method copies content of source stack to
-	//the destination stack. The content should be exactly same.
 
-	
+	derivedChainStack tempStack = source;
+
+	while (!tempStack.empty()) {
+		int newN = tempStack.top();
+		newStack.pop();
+		m = (m * 10) + newN;
+	}
 	
 }
 
