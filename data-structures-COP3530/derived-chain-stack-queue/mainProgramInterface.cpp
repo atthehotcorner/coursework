@@ -67,12 +67,21 @@ bool mainProgramInterface::validSequence(int *theSequence, int n)
 void mainProgramInterface::duplicateStack(derivedChainStack* source, derivedChainStack* dest)
 {
 
-	derivedChainStack* tempStack = source;
+	derivedChainStack* tempStack = new derivedChainStack(source->size());
 
+	// transfer to temp stack
+	while (!source->empty()) {
+		int current = *(source->top());
+		source->pop();
+		tempStack->push(current);
+	}
+
+	// transfer temp stack into source and dest
 	while (!tempStack->empty()) {
-		int* newN = tempStack->top();
+		int current = *(tempStack->top());
 		tempStack->pop();
-		dest->push(*newN);
+		source->push(current);
+		dest->push(current);
 	}
 
 }
