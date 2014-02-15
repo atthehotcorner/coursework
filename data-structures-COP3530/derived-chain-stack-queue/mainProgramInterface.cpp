@@ -75,8 +75,8 @@ void mainProgramInterface :: duplicateStack(derivedChainStack* source, derivedCh
 
 	while (!tempStack.empty()) {
 		int newN = tempStack.top();
-		newStack.pop();
-		m = (m * 10) + newN;
+		tempStack.pop();
+		dest.push(newN);
 	}
 	
 }
@@ -84,7 +84,22 @@ void mainProgramInterface :: duplicateStack(derivedChainStack* source, derivedCh
 int mainProgramInterface :: lastCutomer(int m, int n)
 {
 	//Write your code here. Returns the index of the last customer within m customers. 
-	return 0;
+
+	// number of customers m
+	// number of customers sent to end n
+
+	derivedChainQueue line(m);
+	for (int i = 1; i = < m; i++) {
+		line.push(i);
+	}
+
+	while (line.empty() == false) {
+		for (int i = 1; i = < n; i++) {
+			line.push(line.top());
+			line.pop();
+		}
+		if (line.size() == 1) return line.top();
+	}
 }
 
 void mainProgramInterface :: call_Palindrome()
