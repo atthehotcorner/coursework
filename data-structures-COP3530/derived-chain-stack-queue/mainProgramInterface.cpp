@@ -11,21 +11,21 @@ bool mainProgramInterface :: checkPalindrome(long theNumber)
 {
 
 	long n = theNumber;
-	newStack = new derivedChainStack();
+	derivedChainStack* newStack = new derivedChainStack();
 
 	// Add each digit to the stack
 	do {
 		int digit = n % 10;
-		newStack.push(digit);
+		newStack->push(digit);
 		n /= 10;
 	} while (n > 0);
 
 	// reassemble into new number
 	long m = 0;
 
-	while (!newStack.empty()) {
-		int newN = newStack.top();
-		newStack.pop();
+	while (!newStack->empty()) {
+		int newN = *(newStack->top());
+		newStack->pop();
 		m = (m * 10) + newN;
 	}
 
@@ -35,26 +35,27 @@ bool mainProgramInterface :: checkPalindrome(long theNumber)
 
 bool mainProgramInterface :: validSequence(int *theSequence, int n)
 {
-
-	newStack = new derivedChainStack();
-	bool valid = false, bool quit = false;
+	/*
+	derivedChainStack* newStack = new derivedChainStack();
+	bool valid = false;
+	bool quit = false;
 	int i = 0;
 
-	while (!quit && i =< n) {
+	while (!quit && i <= n) {
 		// put 5s in stack
 		if (theSequence[i] == 5) {
-			newStack.push(theSequence[i]);
+			newStack->push(theSequence[i]);
 			i++;
 		}
 		// check for change of 5 if 10 encountered
 		else if (theSequence[i] == 10) {
 			// index of 5
-			int index = newStack.indexOf(5);
+			int index = newStack->indexOf(5);
 
 			// insert 10, remove 5
 			if (index > -1) {
-				newStack.push(theSequence[i]);
-				newStack.erase(index);
+				newStack->push(theSequence[i]);
+				newStack->erase(index);
 				i++;
 			}
 			// no 5s, return false
@@ -64,19 +65,19 @@ bool mainProgramInterface :: validSequence(int *theSequence, int n)
 		else quit = true;
 	}
 
-	return valid;
-		 
+	return valid;*/
+	return false;
 }
 
 void mainProgramInterface :: duplicateStack(derivedChainStack* source, derivedChainStack* dest)
 {
 
-	derivedChainStack tempStack = source;
+	derivedChainStack* tempStack = source;
 
-	while (!tempStack.empty()) {
-		int newN = tempStack.top();
-		tempStack.pop();
-		dest.push(newN);
+	while (!tempStack->empty()) {
+		int* newN = tempStack->top();
+		tempStack->pop();
+		dest->push(*newN);
 	}
 	
 }
@@ -88,18 +89,19 @@ int mainProgramInterface :: lastCutomer(int m, int n)
 	// number of customers m
 	// number of customers sent to end n
 
-	derivedChainQueue line(m);
-	for (int i = 1; i = < m; i++) {
-		line.push(i);
+	derivedChainQueue* line = new derivedChainQueue(m);
+	for (int i = 1; i <= m; i++) {
+		line->push(i);
 	}
 
-	while (line.empty() == false) {
-		for (int i = 1; i = < n; i++) {
-			line.push(line.top());
-			line.pop();
+	while (line->size() != 1) {
+		for (int i = 1; i <= n; i++) {
+			line->push(*(line->front()));
+			line->pop();
 		}
-		if (line.size() == 1) return line.top();
 	}
+
+	return *(line->front());
 }
 
 void mainProgramInterface :: call_Palindrome()
