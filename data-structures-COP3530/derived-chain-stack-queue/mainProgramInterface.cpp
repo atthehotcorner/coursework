@@ -84,7 +84,6 @@ void mainProgramInterface :: duplicateStack(derivedChainStack* source, derivedCh
 
 int mainProgramInterface :: lastCutomer(int m, int n)
 {
-	//Write your code here. Returns the index of the last customer within m customers. 
 
 	// number of customers m
 	// number of customers sent to end n
@@ -99,6 +98,9 @@ int mainProgramInterface :: lastCutomer(int m, int n)
 			line->push(*(line->front()));
 			line->pop();
 		}
+
+		// Serve the first in queue :)
+		line->pop();
 	}
 
 	return *(line->front());
