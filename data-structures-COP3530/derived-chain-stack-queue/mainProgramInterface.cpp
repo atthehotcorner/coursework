@@ -11,21 +11,21 @@ bool mainProgramInterface :: checkPalindrome(long theNumber)
 {
 
 	long n = theNumber;
-	derivedChainStack* newStack = new derivedChainStack();
+	derivedChainQueue* newQueue = new derivedChainQueue();
 
 	// Add each digit to the stack
 	do {
 		int digit = n % 10;
-		newStack->push(digit);
+		newQueue->push(digit);
 		n /= 10;
 	} while (n > 0);
 
 	// reassemble into new number
 	long m = 0;
 
-	while (!newStack->empty()) {
-		int newN = *(newStack->top());
-		newStack->pop();
+	while (!newQueue->empty()) {
+		int newN = *(newQueue->front());
+		newQueue->pop();
 		m = (m * 10) + newN;
 	}
 
