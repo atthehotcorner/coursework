@@ -8,9 +8,31 @@ using namespace std;
 void linkedBinaryTree :: consturctTree(int *in, int *post)
 {
 
-    // construct bst from inorder and postorder
-    // http://www.programcreek.com/2013/01/construct-binary-tree-from-inorder-and-postorder-traversal/
-    
+	// from email:
+	// In Assignment 4, in the construct tree method as the array length is not passed, you can assume it to be hardcoded as 17.
+
+	// get root
+	int newRoot = post[16];
+	root = new binaryTreeNode(newRoot);
+
+	// find position of root in inorder, derive left and right sub trees
+	int rootPosition = 0;
+
+	for (int i = 0; i < 17; i++) {
+		if (in[i] == newRoot) {
+			rootPosition = i + 1;
+		}
+	}
+
+	// insert left side
+	for (int j = 0; j < rootPosition; j++) {
+
+	}
+
+	// insert right side
+	for (int k = 0; k < 17 - rootPosition; k++) {
+
+	}
 }
 
 
