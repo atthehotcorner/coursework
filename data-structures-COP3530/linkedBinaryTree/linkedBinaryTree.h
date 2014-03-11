@@ -32,6 +32,7 @@ class linkedBinaryTree : public binaryTree
 	 void visit(binaryTreeNode *t);
 	 int height(binaryTreeNode *t);
 
+	 binaryTreeNode consturctTree(int *in, int *post, int startIndexIn, int endIndexIn, int startIndexPost, int endIndexPost);
 	 void consturctTree(int *in, int *post);
 	 int maxHeightDifference(); 
      
