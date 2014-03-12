@@ -8,8 +8,8 @@ using namespace std;
 binaryTreeNode* linkedBinaryTree::consturctTree(int *in, int *post, int startIndexIn, int endIndexIn, int startIndexPost, int endIndexPost) {
 	cout << startIndexIn << ", " << endIndexIn << ", " << startIndexPost << ", " << endIndexPost << endl;
 
-	// Empty array or only child, return and set NULL
-	if (endIndexIn - startIndexIn < 1 || endIndexPost - startIndexPost < 1) {
+	// Empty array, return and set NULL
+	if (endIndexIn - startIndexIn < 0 || endIndexPost - startIndexPost < 0) {
 		cout << "\n";
 		return NULL;
 	}
