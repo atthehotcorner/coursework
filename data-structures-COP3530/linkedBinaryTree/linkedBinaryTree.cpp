@@ -6,13 +6,8 @@
 using namespace std;
 
 binaryTreeNode* linkedBinaryTree::consturctTree(int *in, int *post, int startIndexIn, int endIndexIn, int startIndexPost, int endIndexPost) {
-	cout << startIndexIn << ", " << endIndexIn << ", " << startIndexPost << ", " << endIndexPost << endl;
-
 	// Empty array, return and set NULL
-	if (endIndexIn - startIndexIn < 0 || endIndexPost - startIndexPost < 0) {
-		cout << "\n";
-		return NULL;
-	}
+	if (endIndexIn - startIndexIn < 0 || endIndexPost - startIndexPost < 0) return NULL;
 
 	// Create new node
 	binaryTreeNode *currentRoot = new binaryTreeNode(post[endIndexPost]);
@@ -20,25 +15,11 @@ binaryTreeNode* linkedBinaryTree::consturctTree(int *in, int *post, int startInd
 	// Find index of currentRoot in inorder
 	int currentRootInOrderIndex = -1;
 	for (int i = startIndexIn; i <= endIndexIn; i++) {
-		if (in[i] == post[endIndexPost]) {
-			currentRootInOrderIndex = i;
-			cout << "(" << in[i] << ")\t";
-		}
-		else cout << in[i] << "\t";
+		if (in[i] == post[endIndexPost]) currentRootInOrderIndex = i;
 	}
-	cout << "\n";
-	for (int i = startIndexPost; i <= endIndexPost; i++) {
-		if (post[i] == post[endIndexPost]) {
-			cout << "(" << post[i] << ")\t";
-		}
-		else cout << post[i] << "\t";
-	}
-	cout << "\n" << endl;
 
 	// Call and set left and right
-	cout << "in left" << endl;
 	currentRoot->leftChild = consturctTree(in, post, startIndexIn, currentRootInOrderIndex - 1, startIndexPost, startIndexPost + (currentRootInOrderIndex - startIndexIn) - 1);
-	cout << "in right" << endl;
 	currentRoot->rightChild = consturctTree(in, post, currentRootInOrderIndex + 1, endIndexIn, startIndexPost + (currentRootInOrderIndex - startIndexIn), endIndexPost - 1);
 
 	return currentRoot;
@@ -55,16 +36,37 @@ void linkedBinaryTree :: consturctTree(int *in, int *post)
 	root = consturctTree(in, post, 0, length - 1, 0, length - 1);
 }
 
+int linkedBinaryTree::max(int a, int b) {
+	if (a > b) return a;
+	else return b;
+}
+
+int linkedBinaryTree::maxHeightDifference(binaryTreeNode *t) {
+	cout << maxDiff << endl;
+	// check for empties
+	if (t == NULL) return 0;
+
+	// both sides exist, get heights
+	int leftHeight = maxHeightDifference(t->leftChild);
+	int rightHeight = maxHeightDifference(t->rightChild);
+	cout << leftHeight << ", " << rightHeight << endl;
+	// find difference in height
+	int diff = leftHeight - rightHeight;
+	if (diff < 0) diff *= -1;
+
+	// update if bigger
+	if (maxDiff < diff) maxDiff = diff;
+
+	// return height
+	return max(leftHeight, rightHeight) + 1;
+}
 
 int linkedBinaryTree :: maxHeightDifference()
 {
-//write your code here
+	maxDiff = 0;
+	maxHeightDifference(root);
 
-
-    return 0;
-
-
-
+	return maxDiff;
 }
 
 void linkedBinaryTree :: preOrder(binaryTreeNode *t)

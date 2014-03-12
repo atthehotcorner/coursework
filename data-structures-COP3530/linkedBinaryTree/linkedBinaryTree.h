@@ -34,10 +34,11 @@ class linkedBinaryTree : public binaryTree
 
 	 binaryTreeNode *consturctTree(int *in, int *post, int startIndexIn, int endIndexIn, int startIndexPost, int endIndexPost);
 	 void consturctTree(int *in, int *post);
+
+	 int max(int a, int b);
+	 int maxDiff;
+	 int maxHeightDifference(binaryTreeNode *t);
 	 int maxHeightDifference(); 
-     
-	 	
-	
 	 
 	private:
 		binaryTreeNode *root;
