@@ -42,14 +42,13 @@ int linkedBinaryTree::max(int a, int b) {
 }
 
 int linkedBinaryTree::maxHeightDifference(binaryTreeNode *t) {
-	cout << maxDiff << endl;
 	// check for empties
 	if (t == NULL) return 0;
 
 	// both sides exist, get heights
 	int leftHeight = maxHeightDifference(t->leftChild);
 	int rightHeight = maxHeightDifference(t->rightChild);
-	cout << leftHeight << ", " << rightHeight << endl;
+
 	// find difference in height
 	int diff = leftHeight - rightHeight;
 	if (diff < 0) diff *= -1;
