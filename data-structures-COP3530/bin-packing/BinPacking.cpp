@@ -62,7 +62,7 @@ void BinPacking::bestFitPack(int *objectSize, int numberOfObjects, int binCapaci
 	cout << "== bin cap is " << binCapacity << " ==" << endl;
 	cout << "object set is { " << objectSize << " } with total number of " << numberOfObjects << endl << endl;
 
-	// make bst with dummy root as root is protected prop of binaryTree, no can modify
+	// make bst ref
 	BinarySearchTree *bst;
 
 	// insert all objects
@@ -84,24 +84,30 @@ void BinPacking::bestFitPack(int *objectSize, int numberOfObjects, int binCapaci
 		// yes there is bin that fits
 		else if (bst->find(objectSize[i - 1]) != NULL || bst->root->capacity >= objectSize[i - 1]) {
 			int foundBinNumber = 0;
-			BinaryTreeNode *bin = bst->root;
 
-			// check if root has cap (error with find function, idk)
-			if (bst->root->capacity >= objectSize[i - 1]) foundBinNumber = 1;
+			// check if root has cap (error with overwriting root, root is protected)
+			if (bst->root->capacity >= objectSize[i - 1]) {
+				foundBinNumber = 1;
+				bst->erase(bst->root);
+
+				// update capacity
+				int newCapacity = binNumberArray[foundBinNumber - 1] - objectSize[i - 1];
+				if (newCapacity != 0) bst->insert(binNumberArray[foundBinNumber - 1] - objectSize[i - 1], foundBinNumber);
+				binNumberArray[foundBinNumber - 1] = newCapacity;
+			}
 			// not, find in tree
 			else {
-				bin = bst->find(objectSize[i - 1]);
-				foundBin = returnedBin->binNumber; // ugh needed to change index offset this whole time
+				BinaryTreeNode *bin = bst->find(objectSize[i - 1]);
+				foundBinNumber = bin->binNumber; // ugh needed to change index offset this whole time
+
+				// update capacity
+				int newCapacity = binNumberArray[foundBinNumber - 1] - objectSize[i - 1];
+				bin->capacity = newCapacity;
+				binNumberArray[foundBinNumber - 1] = newCapacity;
+
+				// remove bin from bst if cap is now zero
+				if (newCapacity == 0) bst->erase(bin);
 			}
-			
-
-			// update capacity
-			int newCapacity = binNumberArray[foundBinNumber - 1] - objectSize[i - 1];
-			bin->capacity = newCapacity;
-			binNumberArray[foundBinNumber - 1] = newCapacity;
-
-			// remove bin from bst if cap is now zero
-			if (newCapacity == 0) bst->erase(bin);
 
 			cout << "yes has bin, now using bin " << foundBinNumber << ", insert " << objectSize[i - 1] << endl;
 		}
